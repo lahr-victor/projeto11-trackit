@@ -6,7 +6,7 @@ export function Header() {
     return (
         <Container>
             <h1>TrackIt</h1>
-            <img src={imgProfileTest} alt="Profile picture" />           
+            <img src={imgProfileTest} alt="Profile" />           
         </Container>
     );
 }
