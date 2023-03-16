@@ -4,7 +4,7 @@ import imgProfileTest from "../assets/images/reagan.jpg";
 
 export function Header() {
     return (
-        <Container>
+        <Container data-test="header">
             <h1>TrackIt</h1>
             <img src={imgProfileTest} alt="Profile" />
         </Container>
