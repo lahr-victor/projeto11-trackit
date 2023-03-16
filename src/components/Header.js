@@ -6,7 +6,7 @@ export function Header() {
     return (
         <Container>
             <h1>TrackIt</h1>
-            <img src={imgProfileTest} alt="Profile" />           
+            <img src={imgProfileTest} alt="Profile" />
         </Container>
     );
 }
@@ -37,7 +37,7 @@ const Container = styled.div`
         border-radius: 50%;
         object-fit: cover;
     }
-`
+`;
 
 
 
