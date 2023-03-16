@@ -27,6 +27,7 @@ const Container = styled.div`
     h1 {
         font-family: 'Playball', cursive;
         font-weight: 400px;
+        font-size: 40px;
         color: #FFFFFF;
     }
 
