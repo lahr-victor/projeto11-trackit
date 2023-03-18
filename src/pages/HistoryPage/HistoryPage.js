@@ -1,16 +1,21 @@
+import React from 'react';
+
 import { Header } from "../../components/Header";
 import { Menu } from "../../components/Menu";
+import { UserContext } from "../../components/App";
 
 import styled from "styled-components";
 
 export function HistoryPage() {
+    const { userImage, setUserImage, dailyProgress, setDailyProgress } = React.useContext(UserContext);
+
     return (
         <>
             <Header />
-                <Container>
-                    <h2>Histórico</h2>
-                    <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
-                </Container>
+            <Container>
+                <h2>Histórico</h2>
+                <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+            </Container>
             <Menu />
         </>
     );
