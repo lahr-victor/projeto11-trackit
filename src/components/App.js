@@ -16,13 +16,15 @@ export const UserContext = React.createContext();
 export function App() {
     const [userImage, setUserImage] = React.useState(undefined);
     const [dailyProgress, setDailyProgress] = React.useState(0);
+    const [token, setToken] = React.useState(undefined);
 
     return (
         <>
             <ResetStyle />
             <GlobalStyle />
 
-            <UserContext.Provider value={{ userImage, setUserImage, dailyProgress, setDailyProgress }}>
+            <UserContext.Provider 
+                value={{ userImage, setUserImage, dailyProgress, setDailyProgress, token, setToken }}>
 
                 <BrowserRouter>
                     <Routes>

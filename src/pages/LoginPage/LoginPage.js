@@ -11,7 +11,7 @@ import { Loading } from "../../components/Loading";
 import imgLogo from "../../assets/images/logo.png";
 
 export function LoginPage() {
-    const { setUserImage } = React.useContext(UserContext);
+    const { setUserImage, setToken } = React.useContext(UserContext);
     const [form, setForm] = React.useState({ email: "", password: "" });
     const [isLoading, setIsLoading] = React.useState(false);
     const navigate = useNavigate();
@@ -23,6 +23,7 @@ export function LoginPage() {
         axios.post(`${BASEURL}/auth/login`, form)
             .then((response) => {
                 setUserImage(response.data.image);
+                setToken(response.data.token);
                 navigate("/hoje");
             })
 
