@@ -6,24 +6,29 @@ import { Link, useNavigate } from "react-router-dom";
 /* import { UserContext } from "../../components/App"; */
 
 import { BASEURL } from "../../constants/urls";
+import { Loading } from "../../components/Loading";
 
 import imgLogo from "../../assets/images/logo.png";
 
 export function LoginPage() {
     /* const { userImage, setUserImage, dailyProgress, setDailyProgress } = React.useContext(UserContext); */
     const [form, setForm] = React.useState({ email: "", password: "" });
+    const [isLoading, setIsLoading] = React.useState(false);
     const navigate = useNavigate();
 
     function userLogin(event) {
         event.preventDefault();
-        console.log({ form });
+        setIsLoading(true);
 
         axios.post(`${BASEURL}/auth/login`, form)
-            .then(response => {
-                console.log(response);
+            .then((response) => {
                 navigate("/hoje");
             })
-            .catch(error => alert(error.response.data.message));
+
+            .catch((error) => {
+                alert(error.response.data.message);
+                setIsLoading(false);
+            });
     }
 
     function handleForm(event) {
@@ -43,6 +48,7 @@ export function LoginPage() {
                     placeholder="email"
                     value={form.email}
                     onChange={handleForm}
+                    disabled={isLoading}
                 />
                 <input
                     name="password"
@@ -50,8 +56,14 @@ export function LoginPage() {
                     placeholder="senha"
                     value={form.password}
                     onChange={handleForm}
+                    disabled={isLoading}
                 />
-                <button type="submit">Entrar</button>
+                <button
+                    type="submit"
+                    disabled={isLoading}
+                >
+                    {isLoading ? <Loading /> : "Entrar"}
+                </button>
             </form>
             <Link to="/cadastro">
                 <p>Não tem uma conta? Cadastre-se!</p>
@@ -97,6 +109,10 @@ const Container = styled.div`
                 color: #D4D4D4;
                 opacity: 1;
             }
+
+            &:disabled {
+                background-color: #F2F2F2;
+            }
         }
 
         button {
@@ -109,6 +125,14 @@ const Container = styled.div`
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:disabled {
+                opacity: 0.7;
+                cursor: initial;
+            }
         }
     }
 
