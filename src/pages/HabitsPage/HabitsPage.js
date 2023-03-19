@@ -5,7 +5,7 @@ import { Menu } from "../../components/Menu";
 import { UserContext } from "../../components/App";
 
 export function HabitsPage() {
-    const { userImage, setUserImage, dailyProgress, setDailyProgress } = React.useContext(UserContext);
+    const { dailyProgress, setDailyProgress } = React.useContext(UserContext);
 
     return (
         <>

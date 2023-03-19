@@ -7,7 +7,7 @@ import { UserContext } from "../../components/App";
 import styled from "styled-components";
 
 export function HistoryPage() {
-    const { userImage, setUserImage, dailyProgress, setDailyProgress } = React.useContext(UserContext);
+    const { dailyProgress, setDailyProgress } = React.useContext(UserContext);
 
     return (
         <>

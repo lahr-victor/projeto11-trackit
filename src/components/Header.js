@@ -1,12 +1,15 @@
+import React from "react";
 import styled from "styled-components";
 
-import imgProfileTest from "../assets/images/reagan.jpg";
+import { UserContext } from "./App"
 
 export function Header() {
+    const { userImage } = React.useContext(UserContext);
+
     return (
         <Container data-test="header">
             <h1>TrackIt</h1>
-            <img src={imgProfileTest} alt="Profile" />
+            <img src={userImage} alt="Profile" />
         </Container>
     );
 }
