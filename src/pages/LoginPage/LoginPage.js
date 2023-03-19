@@ -1,18 +1,29 @@
+import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 /* import { UserContext } from "../../components/App"; */
+
+import { BASEURL } from "../../constants/urls";
 
 import imgLogo from "../../assets/images/logo.png";
 
 export function LoginPage() {
     /* const { userImage, setUserImage, dailyProgress, setDailyProgress } = React.useContext(UserContext); */
     const [form, setForm] = React.useState({ email: "", password: "" });
+    const navigate = useNavigate();
 
     function userLogin(event) {
         event.preventDefault();
         console.log({ form });
+
+        axios.post(`${BASEURL}/auth/login`, form)
+            .then(response => {
+                console.log(response);
+                navigate("/hoje");
+            })
+            .catch(error => alert(error.response.data.message));
     }
 
     function handleForm(event) {
