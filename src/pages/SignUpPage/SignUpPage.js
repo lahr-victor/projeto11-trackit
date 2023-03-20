@@ -114,7 +114,7 @@ const Container = styled.div`
             background-color: #FFFFFF;
             font-weight: 400;
             font-size: 20px;
-            color: #AFAFAF;
+            color: #666666;
             border: 1px solid #D4D4D4;
             border-radius: 5px;
             outline: none;
@@ -126,6 +126,7 @@ const Container = styled.div`
 
             &:disabled {
                 background-color: #F2F2F2;
+                color: #B3B3B3;
             }
         }
 
