@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { BASEURL } from "../../constants/urls";
+import { Loading } from "../../components/Loading";
 
 import { UserContext } from "../../components/App";
 
@@ -11,6 +12,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
     const [selectedDays, setSelectedDays] = React.useState([]);
     const [habitName, setHabitName] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
+
     const week = [
         { weekDay: "Domingo", letter: "D", value: "0" },
         { weekDay: "Segunda", letter: "S", value: "1" },
@@ -59,6 +61,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
                 onChange={event => setHabitName(event.target.value)}
                 disabled={isLoading}
             />
+
             <WeekContainer>
                 {week.map((day) => (
                     <DayButton
@@ -73,17 +76,20 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
                     </DayButton>
                 ))}
             </WeekContainer>
+
             <ButtonContainer>
                 <CancelButton
                     type="button"
                     onClick={() => setIsCreateHabitVisible(false)}
+                    disabled={isLoading}
                 >
                     Cancelar
                 </CancelButton>
                 <ConfirmButton
                     type="submit"
+                    disabled={isLoading}
                 >
-                    Salvar
+                    {isLoading ? <Loading /> : "Salvar"}
                 </ConfirmButton>
             </ButtonContainer>
         </CreateHabitContainer>
@@ -160,6 +166,11 @@ const CancelButton = styled.button`
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
+    
+    &:disabled {
+        opacity: 0.7;
+        cursor: initial;
+    }
 `;
 
 const ConfirmButton = styled.button`
@@ -173,4 +184,12 @@ const ConfirmButton = styled.button`
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: initial;
+    }
 `;
