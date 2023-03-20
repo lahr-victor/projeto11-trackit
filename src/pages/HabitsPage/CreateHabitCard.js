@@ -3,8 +3,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { BASEURL } from "../../constants/urls";
-import { Loading } from "../../components/Loading";
+import { WEEK } from "../../constants/week";
 
+import { Loading } from "../../components/Loading";
 import { UserContext } from "../../components/App";
 
 export function CreateHabitCard({ setIsCreateHabitVisible }) {
@@ -13,15 +14,8 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
     const [habitName, setHabitName] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const week = [
-        { weekDay: "Domingo", letter: "D", value: "0" },
-        { weekDay: "Segunda", letter: "S", value: "1" },
-        { weekDay: "Terça", letter: "T", value: "2" },
-        { weekDay: "Quarta", letter: "Q", value: "3" },
-        { weekDay: "Quinta", letter: "Q", value: "4" },
-        { weekDay: "Sexta", letter: "S", value: "5" },
-        { weekDay: "Sábado", letter: "S", value: "6" }
-    ];
+    console.log(selectedDays);
+    console.log(habitName);
 
     function createHabit(event) {
         event.preventDefault();
@@ -51,6 +45,8 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
         }
     }
 
+    
+
     return (
         <CreateHabitContainer onSubmit={createHabit}>
             <input
@@ -63,13 +59,13 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
             />
 
             <WeekContainer>
-                {week.map((day) => (
+                {WEEK.map((day) => (
                     <DayButton
                         name={day.weekDay}
                         type="button"
                         value={day.value}
-                        onClick={event => selectDay(event.target.value)}
-                        isSelected={selectedDays.includes(day.value)}
+                        onClick={event => selectDay(parseInt(event.target.value))}
+                        isSelected={selectedDays.includes(parseInt(day.value))}
                         disabled={isLoading}
                     >
                         {day.letter}
@@ -97,7 +93,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
 }
 
 const CreateHabitContainer = styled.form`
-    width: 340px;
+    width: 100%;
     padding: 18px;
     background-color: #FFFFFF;
     display: flex;
@@ -108,7 +104,6 @@ const CreateHabitContainer = styled.form`
     input {
         width: 100%;
         height: 45px;
-        margin-bottom: 6px;
         padding: 10px;
         background-color: #FFFFFF;
         font-weight: 400;
@@ -134,9 +129,10 @@ const WeekContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: left;
+    margin-top: 8px;
 `;
 
-export const DayButton = styled.button`
+const DayButton = styled.button`
     width: 30px;
     height: 30px;
     background-color: ${props => props.isSelected ? "#CFCFCF" : "#FFFFFF"};
@@ -147,6 +143,10 @@ export const DayButton = styled.button`
     border-radius: 5px;
     cursor: pointer;
     margin-right: 4px;
+
+    &:disabled {
+        cursor: initial;
+    }
 `;
 
 const ButtonContainer = styled.div`

@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { BASEURL } from "../../constants/urls";
 
 import { CreateHabitCard } from './CreateHabitCard';
+import { HabitCard } from "./HabitCard";
+
 import { Header } from "../../components/Header";
 import { Menu } from "../../components/Menu";
 import { UserContext } from "../../components/App";
@@ -29,17 +31,22 @@ export function HabitsPage() {
         <>
             <Header />
             <HabitsContainer>
-                <h2>
-                    Hábitos
+                <TitleContainer>
+                    <h2>Hábitos</h2>
                     <CreateButton onClick={() => setIsCreateHabitVisible(true)}>+</CreateButton>
-                </h2>
+                </TitleContainer>
 
                 {isCreateHabitVisible
                     && <CreateHabitCard setIsCreateHabitVisible={setIsCreateHabitVisible} />
                 }
                 {habits.length === 0
-                    && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                }
+                    ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    : habits.map((habit) => (
+                        <HabitCard
+                            habitName={habit.name}
+                            selectedDays={habit.days}
+                        />
+                    ))}
             </HabitsContainer>
             <Menu />
         </>
@@ -48,9 +55,30 @@ export function HabitsPage() {
 
 const HabitsContainer = styled.div`
     width: 100%;
-    height: 100vh;
-    padding: 100px 15px;
+    min-height: 100vh;
+    padding-top: 90px;
+    padding-bottom: 105px;
+    padding-right: 15px;
+    padding-left: 15px;
     background-color: #E5E5E5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        color: #666666;
+        margin-top: 18px;
+    }
+`;
+
+const TitleContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h2 {
         font-weight: 400;
@@ -60,14 +88,6 @@ const HabitsContainer = styled.div`
         width: 100%;
         display: flex;
         justify-content: space-between;
-    }
-
-    p {
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        color: #666666;
-        margin-top: 18px;
     }
 `;
 
