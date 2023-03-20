@@ -10,11 +10,11 @@ export function Menu() {
 
     return (
         <Container data-test="menu">
-            <Link to="/habitos">
+            <Link to="/habitos" data-test="habit-link">
                 <button>Hábitos</button>
             </Link>
             <ProgressBar>
-                <Link to="/hoje">
+                <Link to="/hoje" data-test="today-link">
                     <CircularProgressbar 
                     value={percentage} 
                     text="Hoje"
@@ -29,7 +29,7 @@ export function Menu() {
                     />
                 </Link>
             </ProgressBar>
-            <Link to="/historico">
+            <Link to="/historico" data-test="history-link">
                 <button>Histórico</button>
             </Link>
         </Container>
