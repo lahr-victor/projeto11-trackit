@@ -26,14 +26,15 @@ export function HabitCard({ id, habitName, selectedDays, loadHabits, setHabits }
     }
 
     return (
-        <HabitContainer>
+        <HabitContainer data-test="habit-container">
             <TitleContainer>
-                <h3>{habitName}</h3>
+                <h3 data-test="habit-name">{habitName}</h3>
                 <BsTrash
                     fontSize="18px"
                     color="#666666"
                     cursor="pointer"
                     onClick={() => deleteHabit(id)}
+                    data-test="habit-delete-btn"
                 />
             </TitleContainer>
 
@@ -45,6 +46,7 @@ export function HabitCard({ id, habitName, selectedDays, loadHabits, setHabits }
                         value={day.value}
                         isSelected={selectedDays.includes(day.value)}
                         disabled={true}
+                        data-test="habit-day"
                     >
                         {day.letter}
                     </DayButton>

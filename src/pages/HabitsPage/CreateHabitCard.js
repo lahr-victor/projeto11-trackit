@@ -44,7 +44,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
     }
 
     return (
-        <CreateHabitContainer onSubmit={createHabit}>
+        <CreateHabitContainer onSubmit={createHabit} data-test="habit-create-container">
             <input
                 name="name"
                 type="text"
@@ -52,6 +52,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
                 value={habitName}
                 onChange={event => setHabitName(event.target.value)}
                 disabled={isLoading}
+                data-test="habit-name-input"
             />
 
             <WeekContainer>
@@ -63,6 +64,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
                         onClick={event => selectDay(parseInt(event.target.value))}
                         isSelected={selectedDays.includes(parseInt(day.value))}
                         disabled={isLoading}
+                        data-test="habit-day"
                     >
                         {day.letter}
                     </DayButton>
@@ -74,12 +76,14 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
                     type="button"
                     onClick={() => setIsCreateHabitVisible(false)}
                     disabled={isLoading}
+                    data-test="habit-create-cancel-btn"
                 >
                     Cancelar
                 </CancelButton>
                 <ConfirmButton
                     type="submit"
                     disabled={isLoading}
+                    data-test="habit-create-save-btn"
                 >
                     {isLoading ? <Loading /> : "Salvar"}
                 </ConfirmButton>

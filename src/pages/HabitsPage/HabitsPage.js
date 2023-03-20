@@ -37,7 +37,12 @@ export function HabitsPage() {
             <HabitsContainer>
                 <TitleContainer>
                     <h2>Hábitos</h2>
-                    <CreateButton onClick={() => setIsCreateHabitVisible(true)}>+</CreateButton>
+                    <CreateButton 
+                        onClick={() => setIsCreateHabitVisible(true)}
+                        data-test="habit-create-btn"
+                    >
+                        +
+                    </CreateButton>
                 </TitleContainer>
 
                 {isCreateHabitVisible &&
