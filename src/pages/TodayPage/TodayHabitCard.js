@@ -34,13 +34,13 @@ export function TodayHabitCard({ id, name, done, currentSequence, highestSequenc
     }
 
     return (
-        <TodayHabitContainer data-test="habit-container">
+        <TodayHabitContainer data-test="today-habit-container">
             <TitleContainer>
-                <h4>{name}</h4>
-                <p>Sequência atual: {currentSequence}</p>
-                <p>Seu recorde: {highestSequence}</p>
+                <h4 data-test="today-habit-name">{name}</h4>
+                <p data-test="today-habit-sequence">Sequência atual: {currentSequence}</p>
+                <p data-test="today-habit-record">Seu recorde: {highestSequence}</p>
             </TitleContainer>
-            <CheckButton isChecked={done} onClick={() => checkHabit(id, done)}>
+            <CheckButton isChecked={done} onClick={() => checkHabit(id, done)} data-test="today-habit-check-btn">
                 <BsCheck
                     fontSize="70px"
                     color="#FFFFFF"

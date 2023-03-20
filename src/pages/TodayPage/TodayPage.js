@@ -37,8 +37,8 @@ export function TodayPage() {
         <>
             <Header />
             <TodayHabitsContainer>
-                <h2>{WEEK[dayjs().day()].weekDay}, {dayjs().format("DD/MM")}</h2>
-                <h3>Nenhum hábito concluído ainda</h3>
+                <h2 data-test="today">{WEEK[dayjs().day()].weekDay}, {dayjs().format("DD/MM")}</h2>
+                <h3 data-test="today-counter">Nenhum hábito concluído ainda</h3>
 
                 {todayHabits.map((habit) => (
                     <TodayHabitCard
