@@ -47,6 +47,7 @@ export function SignUpPage() {
                     value={form.email}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="email-input"
                 />
                 <input
                     name="password"
@@ -55,6 +56,7 @@ export function SignUpPage() {
                     value={form.password}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="password-input"
                 />
                 <input
                     name="name"
@@ -63,6 +65,7 @@ export function SignUpPage() {
                     value={form.name}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="user-name-input"
                 />
                 <input
                     name="image"
@@ -71,15 +74,17 @@ export function SignUpPage() {
                     value={form.image}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="user-image-input"
                 />
                 <button
                     type="submit"
                     disabled={isLoading}
+                    data-test="signup-btn"
                 >
                     {isLoading ? <Loading /> : "Cadastrar"}
                 </button>
             </form>
-            <Link to="/">
+            <Link to="/" data-test="login-link">
                 <p>Já tem uma conta? Faça login!</p>
             </Link>
         </Container>
