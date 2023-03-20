@@ -8,14 +8,11 @@ import { WEEK } from "../../constants/week";
 import { Loading } from "../../components/Loading";
 import { UserContext } from "../../components/App";
 
-export function CreateHabitCard({ setIsCreateHabitVisible }) {
+export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits }) {
     const { token } = React.useContext(UserContext);
     const [selectedDays, setSelectedDays] = React.useState([]);
     const [habitName, setHabitName] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
-
-    console.log(selectedDays);
-    console.log(habitName);
 
     function createHabit(event) {
         event.preventDefault();
@@ -25,6 +22,7 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
         axios.post(`${BASEURL}/habits`, body, { headers: { Authorization: `Bearer ${token}` } })
             .then((response) => {
                 console.log(response.data);
+                loadHabits();
                 setIsCreateHabitVisible(false);
             })
 
@@ -44,8 +42,6 @@ export function CreateHabitCard({ setIsCreateHabitVisible }) {
             setSelectedDays([...selectedDays, day]);
         }
     }
-
-    
 
     return (
         <CreateHabitContainer onSubmit={createHabit}>

@@ -1,17 +1,39 @@
+import axios from "axios";
+import React from "react";
 import styled from "styled-components";
 
+import { BASEURL } from "../../constants/urls";
 import { WEEK } from "../../constants/week";
+
+import { UserContext } from "../../components/App";
 
 import { BsTrash } from "react-icons/bs"
 
-export function HabitCard({ habitName, selectedDays }) {
+export function HabitCard({ id, habitName, selectedDays, loadHabits, setHabits }) {
+    const { token } = React.useContext(UserContext);
+
+    function deleteHabit(id) {
+        if (window.confirm(`Deseja excluir o hábito: ${habitName}?`)) {
+            axios.delete(`${BASEURL}/habits/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((response) => {
+                    loadHabits();
+                })
+
+                .catch((error) => {
+                    alert(error.response.data.message);
+                });
+        }
+    }
+
     return (
         <HabitContainer>
             <TitleContainer>
                 <h3>{habitName}</h3>
-                <BsTrash 
-                    font-size="16px"
-                    color="#666666"    
+                <BsTrash
+                    fontSize="18px"
+                    color="#666666"
+                    cursor="pointer"
+                    onClick={() => deleteHabit(id)}
                 />
             </TitleContainer>
 

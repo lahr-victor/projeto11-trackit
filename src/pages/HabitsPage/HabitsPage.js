@@ -16,7 +16,7 @@ export function HabitsPage() {
     const [isCreateHabitVisible, setIsCreateHabitVisible] = React.useState(false);
     const [habits, setHabits] = React.useState([]);
 
-    useEffect(() => {
+    function loadHabits() {
         axios.get(`${BASEURL}/habits`, { headers: { Authorization: `Bearer ${token}` } })
             .then((response) => {
                 setHabits(response.data);
@@ -25,6 +25,10 @@ export function HabitsPage() {
             .catch((error) => {
                 console.error(error.response.data.message);
             });
+    }
+
+    useEffect(() => {
+        loadHabits();
     }, [token]);
 
     return (
@@ -36,15 +40,23 @@ export function HabitsPage() {
                     <CreateButton onClick={() => setIsCreateHabitVisible(true)}>+</CreateButton>
                 </TitleContainer>
 
-                {isCreateHabitVisible
-                    && <CreateHabitCard setIsCreateHabitVisible={setIsCreateHabitVisible} />
+                {isCreateHabitVisible &&
+                    <CreateHabitCard
+                        setIsCreateHabitVisible={setIsCreateHabitVisible}
+                        loadHabits={loadHabits}
+                        setHabits={setHabits}
+                    />
                 }
+
                 {habits.length === 0
                     ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
                     : habits.map((habit) => (
                         <HabitCard
+                            id={habit.id}
                             habitName={habit.name}
                             selectedDays={habit.days}
+                            loadHabits={loadHabits}
+                            setHabits={setHabits}
                         />
                     ))}
             </HabitsContainer>
