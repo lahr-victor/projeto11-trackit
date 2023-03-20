@@ -1,12 +1,15 @@
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import React from "react";
+import styled from "styled-components";
+
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
+import { UserContext } from "./App";
 
 export function Menu() {
-    const percentage = 66;
+    const { dailyProgress } = React.useContext(UserContext);
 
     return (
         <Container data-test="menu">
@@ -16,7 +19,7 @@ export function Menu() {
             <ProgressBar>
                 <Link to="/hoje" data-test="today-link">
                     <CircularProgressbar 
-                    value={percentage} 
+                    value={dailyProgress} 
                     text="Hoje"
                     background
                     backgroundPadding={6}

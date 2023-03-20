@@ -2,13 +2,10 @@ import React from 'react';
 
 import { Header } from "../../components/Header";
 import { Menu } from "../../components/Menu";
-import { UserContext } from "../../components/App";
 
 import styled from "styled-components";
 
 export function HistoryPage() {
-    const { dailyProgress, setDailyProgress } = React.useContext(UserContext);
-
     return (
         <>
             <Header />

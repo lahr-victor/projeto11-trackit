@@ -12,7 +12,7 @@ import { Menu } from "../../components/Menu";
 import { UserContext } from "../../components/App";
 
 export function HabitsPage() {
-    const { dailyProgress, setDailyProgress, token } = React.useContext(UserContext);
+    const { token } = React.useContext(UserContext);
     const [isCreateHabitVisible, setIsCreateHabitVisible] = React.useState(false);
     const [habits, setHabits] = React.useState([]);
 
@@ -29,7 +29,7 @@ export function HabitsPage() {
 
     useEffect(() => {
         loadHabits();
-    }, [token]);
+    }, []);
 
     return (
         <>
