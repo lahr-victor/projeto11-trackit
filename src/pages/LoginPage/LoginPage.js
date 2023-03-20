@@ -51,6 +51,7 @@ export function LoginPage() {
                     value={form.email}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="email-input"
                 />
                 <input
                     name="password"
@@ -59,15 +60,17 @@ export function LoginPage() {
                     value={form.password}
                     onChange={handleForm}
                     disabled={isLoading}
+                    data-test="password-input"
                 />
                 <button
                     type="submit"
                     disabled={isLoading}
+                    data-test="login-btn"
                 >
                     {isLoading ? <Loading /> : "Entrar"}
                 </button>
             </form>
-            <Link to="/cadastro">
+            <Link to="/cadastro" data-test="signup-link">
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Link>
         </Container>
