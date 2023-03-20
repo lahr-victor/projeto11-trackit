@@ -71,6 +71,7 @@ const HabitsContainer = styled.div`
         line-height: 22px;
         color: #666666;
         margin-top: 18px;
+        align-self: flex-start;
     }
 `;
 

@@ -23,15 +23,21 @@ export function HistoryPage() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
-    padding: 100px 15px;
+    min-height: 100vh;
+    padding-top: 90px;
+    padding-bottom: 105px;
+    padding-right: 15px;
+    padding-left: 15px;
     background-color: #E5E5E5;
 
     h2 {
+        height: 35px;
         font-weight: 400;
         font-size: 22px;
         line-height: 28px;
         color: #126BA5;
+        display: flex;
+        align-items: center;
     }
 
     p {
