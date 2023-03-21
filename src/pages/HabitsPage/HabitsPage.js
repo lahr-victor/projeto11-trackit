@@ -15,6 +15,8 @@ export function HabitsPage() {
     const { token } = React.useContext(UserContext);
     const [isCreateHabitVisible, setIsCreateHabitVisible] = React.useState(false);
     const [habits, setHabits] = React.useState([]);
+    const [habitName, setHabitName] = React.useState("");
+    const [selectedDays, setSelectedDays] = React.useState([]);
 
     function loadHabits() {
         axios.get(`${BASEURL}/habits`, { headers: { Authorization: `Bearer ${token}` } })
@@ -50,6 +52,10 @@ export function HabitsPage() {
                         setIsCreateHabitVisible={setIsCreateHabitVisible}
                         loadHabits={loadHabits}
                         setHabits={setHabits}
+                        habitName={habitName}
+                        setHabitName={setHabitName}
+                        selectedDays={selectedDays}
+                        setSelectedDays={setSelectedDays}
                     />
                 }
 

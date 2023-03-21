@@ -8,10 +8,8 @@ import { WEEK } from "../../constants/week";
 import { Loading } from "../../components/Loading";
 import { UserContext } from "../../components/App";
 
-export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits }) {
+export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits, habitName, setHabitName, selectedDays, setSelectedDays }) {
     const { token } = React.useContext(UserContext);
-    const [selectedDays, setSelectedDays] = React.useState([]);
-    const [habitName, setHabitName] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
 
     function createHabit(event) {
