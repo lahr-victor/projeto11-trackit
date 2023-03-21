@@ -41,14 +41,14 @@ export function TodayHabitCard({ id, name, done, currentSequence, highestSequenc
                     isChecked={done}
                     data-test="today-habit-sequence"
                 >
-                    Sequência atual: {currentSequence}
+                    Sequência atual: {currentSequence} dia(s)
                 </CurrentSequence>
                 <HighestSequence
                     currentValue={currentSequence}
                     highestValue={highestSequence}
                     data-test="today-habit-record"
                 >
-                    Seu recorde: {highestSequence}
+                    Seu recorde: {highestSequence} dia(s)
                 </HighestSequence>
             </TitleContainer>
             <CheckButton isChecked={done} onClick={() => checkHabit(id, done)} data-test="today-habit-check-btn">
