@@ -18,8 +18,11 @@ export function TodayPage() {
 
     function calculateDailyProgress() {
         const allHabits = todayHabits.length;
-        const checkedHabits = (todayHabits.filter((d) => d.done === true)).length;
-        setDailyProgress(((checkedHabits / allHabits) * 100).toFixed(0));
+        if (allHabits !== 0) {
+            const checkedHabits = (todayHabits.filter((d) => d.done === true)).length;
+            setDailyProgress(((checkedHabits / allHabits) * 100).toFixed(0));
+        }
+        
     }
 
     function loadTodayHabits() {
