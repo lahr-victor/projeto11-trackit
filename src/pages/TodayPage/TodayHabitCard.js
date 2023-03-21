@@ -37,8 +37,19 @@ export function TodayHabitCard({ id, name, done, currentSequence, highestSequenc
         <TodayHabitContainer data-test="today-habit-container">
             <TitleContainer>
                 <h4 data-test="today-habit-name">{name}</h4>
-                <p data-test="today-habit-sequence">Sequência atual: {currentSequence}</p>
-                <p data-test="today-habit-record">Seu recorde: {highestSequence}</p>
+                <CurrentSequence
+                    isChecked={done}
+                    data-test="today-habit-sequence"
+                >
+                    Sequência atual: {currentSequence}
+                </CurrentSequence>
+                <HighestSequence
+                    currentValue={currentSequence}
+                    highestValue={highestSequence}
+                    data-test="today-habit-record"
+                >
+                    Seu recorde: {highestSequence}
+                </HighestSequence>
             </TitleContainer>
             <CheckButton isChecked={done} onClick={() => checkHabit(id, done)} data-test="today-habit-check-btn">
                 <BsCheck
@@ -72,14 +83,22 @@ const TitleContainer = styled.div`
         color: #666666;
         margin-bottom: 10px;
     }
-
-    p {
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 16px;
-        color: #666666;
-    }
 `;
+
+const CurrentSequence = styled.p`
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: ${props => props.isChecked ? "#8FC549" : "#666666"};
+`;
+
+const HighestSequence = styled.p`
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: ${props => (props.highestValue === props.currentValue) && (props.highestValue > 0) ? "#8FC549" : "#666666"};
+`;
+
 
 const CheckButton = styled.div`
     width: 70px;
