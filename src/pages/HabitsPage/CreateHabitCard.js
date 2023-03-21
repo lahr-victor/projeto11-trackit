@@ -54,13 +54,13 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
             />
 
             <WeekContainer>
-                {WEEK.map((day) => (
+                {WEEK.map((day, index) => (
                     <DayButton
                         name={day.weekDay}
                         type="button"
-                        value={day.value}
+                        value={index}
                         onClick={event => selectDay(parseInt(event.target.value))}
-                        isSelected={selectedDays.includes(parseInt(day.value))}
+                        isSelected={selectedDays.includes(index)}
                         disabled={isLoading}
                         data-test="habit-day"
                     >

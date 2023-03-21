@@ -39,12 +39,12 @@ export function HabitCard({ id, habitName, selectedDays, loadHabits, setHabits }
             </TitleContainer>
 
             <WeekContainer>
-                {WEEK.map((day) => (
+                {WEEK.map((day, index) => (
                     <DayButton
                         name={day.weekDay}
                         type="button"
-                        value={day.value}
-                        isSelected={selectedDays.includes(day.value)}
+                        value={index}
+                        isSelected={selectedDays.includes(index)}
                         disabled={true}
                         data-test="habit-day"
                     >
