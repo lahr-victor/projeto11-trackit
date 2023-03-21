@@ -13,10 +13,14 @@ import { Menu } from "../../components/Menu";
 import { UserContext } from "../../components/App";
 
 export function TodayPage() {
-    const { setDailyProgress, token } = React.useContext(UserContext);
+    const { dailyProgress, setDailyProgress, token } = React.useContext(UserContext);
     const [todayHabits, setTodayHabits] = React.useState([]);
 
-    setDailyProgress(0);
+    function calculateDailyProgress() {
+        const allHabits = todayHabits.length;
+        const checkedHabits = (todayHabits.filter((d) => d.done === true)).length;
+        setDailyProgress(((checkedHabits / allHabits) * 100).toFixed(0));
+    }
 
     function loadTodayHabits() {
         axios.get(`${BASEURL}/habits/today`, { headers: { Authorization: `Bearer ${token}` } })
@@ -26,19 +30,22 @@ export function TodayPage() {
 
             .catch((error) => {
                 console.error(error.response.data.message);
-            });
+            });        
     }
 
     useEffect(() => {
-        loadTodayHabits();
-    }, []);
+        calculateDailyProgress();
+        loadTodayHabits();        
+    }, [todayHabits]);
 
     return (
         <>
             <Header />
             <TodayHabitsContainer>
                 <h2 data-test="today">{WEEK[dayjs().day()].weekDay}, {dayjs().format("DD/MM")}</h2>
-                <h3 data-test="today-counter">Nenhum hábito concluído ainda</h3>
+                <H3 percentage={dailyProgress} data-test="today-counter">
+                    {dailyProgress > 0 ? `${dailyProgress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
+                </H3>
 
                 {todayHabits.map((habit) => (
                     <TodayHabitCard
@@ -75,11 +82,11 @@ const TodayHabitsContainer = styled.div`
         display: flex;
         align-items: center;
     }
+`;
 
-    h3 {
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        color: #BABABA;
-    }
+const H3 = styled.h3`
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: ${props => props.percentage > 0 ? "#8FC549" : "#BABABA"};
 `;
