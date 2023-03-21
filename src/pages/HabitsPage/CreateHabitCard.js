@@ -22,6 +22,8 @@ export function CreateHabitCard({ setIsCreateHabitVisible, loadHabits, setHabits
                 console.log(response.data);
                 loadHabits();
                 setIsCreateHabitVisible(false);
+                setHabitName("");
+                setSelectedDays([]);
             })
 
             .catch((error) => {
